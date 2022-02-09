@@ -1,0 +1,103 @@
+
+////Project Setup////
+- ls
+- dir
+- mkdir Reactivities
+- cd Reactivities
+- dotnet -h
+- dotnet new -l
+
+#Create solution file
+- ASP.NET Core Web API
+- Class library
+
+#1 Create Solution file
+- dotnet new sln
+
+#2 create web api
+- dotnet new webapi -n API
+
+#3 create class library
+- dotnet new classlib -n Application
+- dotnet new classlib -n Domain
+- dotnet new classlib -n Persistence
+
+#4 add solution file in every class library and API folder
+- dotnet sln add API/API.csproj
+- dotnet sln add Application
+- dotnet sln add Domain
+- dotnet sln add Persistence
+
+#5 Adding dependency in API to Application
+- cd API
+- dotnet add reference ../Application
+
+#6 Adding dependency in Application to Persistence & Domain
+- cd ..
+- cd Application
+- dotnet add reference ../Persistence
+- dotnet add reference ../Domain
+
+#7 Adding dependency in Persistence to Domain
+- cd ..
+- cd Persistence
+- dotnet add reference ../Domain
+
+----------*******----------------
+
+## test API weather controller
+## Create domain class 
+## Adding an Entity Framework Db 
+- version : net6.0
+//In API folder
+- install Microsoft.EntityFrameworkCore.Design version Version="6.0.1"
+- install Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1"
+
+//in Persistence folder
+- install Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1"
+
+
+## Creating an Etity framework code first migration 
+//Creating Migration
+
+#install dotnet ef
+- dotnet tool list --global
+- dotnet tool install --global dotnet-ef
+- dotnet ef migrations add InitialCreate -p Persistence -s API
+
+//to remove all migration and all over again
+- dotnet ef database update 0
+- dotnet ef migrations remove -p Persistence -s API
+
+//update database
+- dotnet ef database -v update -p Persistence -s API
+
+
+## Creating database
+-dotnet ef database -h
+- open database from ctrl + p  
+
+
+## Seeding the database
+
+
+## Adding API controller
+
+
+## Save changes into source control 
+
+- dotnet new gitignore
+
+git init
+git add .
+git commit -m 'Add your commit message'
+git remote add origin https://github.com/pumsuankhaiSEKTAK/Reactjs_.NetCore.git
+git branch -M main
+git push -u origin main
+
+
+
+
+
+
+
